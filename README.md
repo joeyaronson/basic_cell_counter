@@ -2,7 +2,7 @@
 a python program used to count cells in an image
 
 
-# how to use
+## how to use
 provide the program with an input image
 eg: ![sample_input_img](img/test_img.jpg)
 
@@ -11,7 +11,7 @@ program will calculate approximate number of cells in the image
 if -o flag is used, program will save the highlighted output image
 eg: ![sample_output_img](img/sample_output.jpg)
 
-if -m flag is used, program will save the generatec mask image
+if -m flag is used, program will save the generated mask image
 eg: ![sample_mask_img](img/sample_mask_output.jpg)
 
 ### args:
