@@ -8,7 +8,7 @@ import sys, getopt
     constants
 """
 MINIMUM_AREA = 3  # minimum area of cells
-AVERAGE_CELL_AREA = 190  # average size of cells
+AVG_CELL_AREA = 190  # AVG size of cells
 CONNECTED_CELL_AREA = 400  # minimum size of cluster of cells
 
 
@@ -52,14 +52,14 @@ def main(argv):
     close = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel, iterations=2)
 
     # generates list contours around shapes from the mask
-    cnts = cv2.findContours(close, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    contours = cv2.findContours(close, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = contours[0] if len(contours) == 2 else contours[1]
 
     cells = 0
     result_table = {}
 
     # loop through each contour
-    for c in cnts:
+    for c in contours:
         # get area of the contour
         area = cv2.contourArea(c)
 
@@ -67,7 +67,7 @@ def main(argv):
         if area > MINIMUM_AREA:
             # if cell is a cluster
             if area > CONNECTED_CELL_AREA:
-                multi_cell = math.ceil(area / AVERAGE_CELL_AREA)
+                multi_cell = math.ceil(area / AVG_CELL_AREA)
                 if verbose:
                     print(multi_cell, end=" ")
                 col = (255, 0, 255)
